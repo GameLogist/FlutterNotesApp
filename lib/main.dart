@@ -30,6 +30,9 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   int currentIndex = 0;
+  final List<String> entries = <String>['A', 'B', 'C'];
+  final List<int> colorCodes = <int>[600, 500, 100];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +40,16 @@ class _FirstPageState extends State<FirstPage> {
         title: const Text("Notes Tracker"),
       ),
       body: Center(
-        child: Image.network(
-            'https://1.bp.blogspot.com/-Kde7mVC4HI4/XfvqEK-qc_I/AAAAAAAACMU/IlYVifM9EW43B113Cavrtg8efjqIMyRjQCLcBGAsYHQ/s640-rw/Spirited%2Baway%2Banime%2Bwallpaper.jpg'),
-      ),
+          child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: entries.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  height: 50,
+                  color: Colors.amber[colorCodes[index]],
+                  child: Center(child: Text('Entry ${entries[index]}')),
+                );
+              })),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
